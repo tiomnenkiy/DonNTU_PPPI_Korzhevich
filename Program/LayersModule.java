@@ -1,4 +1,8 @@
-// Г) модуль слоев
+/**
+ * Модуль слоев
+ * @author Vladimir
+ * @version 1.0.1
+ */
 public class LayersModule {
     public void createLayer() {
         // Реализовать создание слоя

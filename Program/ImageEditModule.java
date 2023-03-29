@@ -1,4 +1,8 @@
-// В) модуль редактирования изображения
+/**
+ * Модуль редактирования изображения
+ * @author Vladimir
+ * @version 1.0.1
+ */
 public class ImageEditModule {
     public void setColorMode(String mode) {
         // Реализовать установку режима цветовой модели

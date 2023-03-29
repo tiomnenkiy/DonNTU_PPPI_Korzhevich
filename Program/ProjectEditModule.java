@@ -1,4 +1,8 @@
-// Б) модуль редактирования проекта
+/**
+ * Модуль редактирования проекта
+ * @author Vladimir
+ * @version 1.0.1
+ */
 public class ProjectEditModule {
     public void cut() {
         // Реализовать вырезание

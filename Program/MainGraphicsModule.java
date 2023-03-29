@@ -1,5 +1,11 @@
-// Е) основной модуль графики
+/**
+ * Основной модуль графики
+ * @author Vladimir
+ * @version 1.0.1
+ */
 public class MainGraphicsModule {
+    public static Object ShapeType;
+
     public void moveObjects(List<Shape> shapes, Point2D startPoint, Point2D endPoint) {
         // Реализовать инструмент перемещения
     }
@@ -67,7 +73,14 @@ public class MainGraphicsModule {
     public void extractContour(Rectangle rect) {
         // Реализовать инструмент "Выделение контура"
     }
-    
+
+    /**
+     * Инструмент "Фигура" рисует одной из трех видов фигур:
+     *  - прямоугольник
+     *  - эллипс
+     *  - треугольник
+     * @param shape принимает одно из трех состояний ShapeType: RECTANGLE, ELLIPSE, TRIANGLE
+     */
     public void drawShape(Shape shape) {
         // Реализовать инструмент "Фигура" для рисования заданной фигуры
     }

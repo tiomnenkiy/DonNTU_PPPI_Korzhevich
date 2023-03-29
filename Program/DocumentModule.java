@@ -1,8 +1,13 @@
 import java.nio.file.Files;
+import java.util.List;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 
-// А) модуль работы с документами
+/**
+ * Модуль работы с документами
+ * @author Vladimir
+ * @version 1.0.1
+ */
 public class DocumentModule {
     List<String> data;
     JFrame frame;
