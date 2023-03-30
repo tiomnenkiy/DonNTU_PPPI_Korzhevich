@@ -1,9 +1,13 @@
+import java.util.List;
+
 /**
  * Модуль слоев
  * @author Vladimir
  * @version 1.0.1
  */
 public class LayersModule {
+    private class Layer {
+    }
     public void createLayer() {
         // Реализовать создание слоя
     }

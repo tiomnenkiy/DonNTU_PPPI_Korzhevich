@@ -15,6 +15,8 @@ import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 import javax.imageio.ImageIO;
@@ -36,13 +38,6 @@ import javax.swing.JToggleButton;
 import javax.swing.border.Border;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
-import ProjectEditModule;
-import MainGraphicsModule;
-import DocumentModule;
-import LayersModule;
-import ImageEditModule;
-import TextModule;
-
 /**
  * Модуль редактирования проекта
  * @author KattrinSue
@@ -57,6 +52,8 @@ public class UserInterface {
   private LayersModule layersModule;
   private TextModule textModule;
   private ImageEditModule imageEditModule;
+  public File selectedFile;
+  public String path;
 
   public UserInterface() {
     mainFrame = new JFrame("Photoshop Clone");
@@ -66,6 +63,19 @@ public class UserInterface {
     layersModule = new LayersModule();
     textModule = new TextModule();
     imageEditModule = new ImageEditModule();
+    JFileChooser fileChooser = new JFileChooser();
+    FileNameExtensionFilter filter = new FileNameExtensionFilter("Images", "bmp", "jpg", "jpeg", "gif", "png");
+    fileChooser.setFileFilter(filter);
+    int returnValue = fileChooser.showOpenDialog(mainFrame);
+    if (returnValue == JFileChooser.APPROVE_OPTION) {
+      selectedFile = fileChooser.getSelectedFile();
+      path = selectedFile.getAbsolutePath();
+      try {
+        Files.createFile(Path.of(path));
+      } catch (IOException e) {
+        throw new RuntimeException(e);
+      }
+    }
     createGUI();
   }
 
@@ -84,7 +94,7 @@ public class UserInterface {
     contentPanel.add(toolsPanel, BorderLayout.WEST);
 
     mainGraphicsModule = new MainGraphicsModule();
-    contentPanel.add(mainGraphicsModule, BorderLayout.CENTER);
+    //contentPanel.add(mainGraphicsModule, BorderLayout.CENTER);
 
     mainFrame.add(contentPanel, BorderLayout.CENTER);
 
@@ -111,13 +121,13 @@ public class UserInterface {
     saveButton.addActionListener(e -> documentModule.saveDocument(selectedFile.getAbsolutePath()));
 
     JToggleButton selectButton = new JToggleButton(new ImageIcon(getClass().getResource("select.png")));
-    selectButton.addActionListener(e -> mainGraphicsModule.setShapeSelection());
+    selectButton.addActionListener(e -> mainGraphicsModule.selectObjects());
 
     JToggleButton drawButton = new JToggleButton(new ImageIcon(getClass().getResource("pencil.png")));
-    drawButton.addActionListener(e -> mainGraphicsModule.setPencilDrawing());
+    drawButton.addActionListener(e -> mainGraphicsModule.drawStroke());
 
     JToggleButton eraseButton = new JToggleButton(new ImageIcon(getClass().getResource("eraser.png")));
-    eraseButton.addActionListener(e -> mainGraphicsModule.setErasing());
+    eraseButton.addActionListener(e -> mainGraphicsModule.erase());
 
     JToggleButton fillButton = new JToggleButton(new ImageIcon(getClass().getResource("fill.png")));
     fillButton.addActionListener(e -> mainGraphicsModule.setFillDrawing());
@@ -139,14 +149,14 @@ public class UserInterface {
     textButton.addActionListener(e -> {
       String text = JOptionPane.showInputDialog(mainFrame, "Enter Text to Draw");
       if (text != null) {
-        mainGraphicsModule.setTextDrawing(text);
+        mainGraphicsModule.horizontalText(text);
       }
     });
 
     JToggleButton selectColorButton = new JToggleButton(new ImageIcon(getClass().getResource("color-picker.png")));
     selectColorButton.addActionListener(e -> {
       Color color = JColorChooser.showDialog(null, "Choose Color", Color.BLACK);
-      mainGraphicsModule.setDrawingColor(color);
+      //mainGraphicsModule.setDrawingColor(color);
     });
 
     toolsPanel.add(newButton);
