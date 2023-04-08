@@ -55,7 +55,7 @@ public class DocumentModule {
     
     public void saveDocument(String filename) {
         JFileChooser fileChooser = new JFileChooser();
-        FileNameExtensionFilter filter = new FileNameExtensionFilter("Images", "bmp", "jpg", "jpeg", "gif", "png");
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("Images", "bmp", "jpg", "jpeg", "gif", "png"); //TODO необходимо разделить функцию на save и save as
         fileChooser.setFileFilter(filter);
         int returnValue = fileChooser.showSaveDialog(frame);
         if (returnValue == JFileChooser.APPROVE_OPTION) {
