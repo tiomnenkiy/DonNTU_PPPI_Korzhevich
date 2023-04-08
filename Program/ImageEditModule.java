@@ -18,14 +18,13 @@ public class ImageEditModule {
     public void setImageSize(int width, int height) {
         // Реализовать установку размера изображения
     }
+    public void hueSaturation(String mode) {
+        // Изменить цвет/насыщенность
+    }
     
     public void rotateImage(float angle) {
         // Реализовать поворот изображения
     }
-    public void transformImage(int width, int height, float angle) {
-        // Реализовать трансформирование изображения
-    }
-
     public void transformImage(int width, int height, float angle) {
         // Реализовать трансформирование изображения
     }
