@@ -15,6 +15,14 @@ public class LayersModule {
     public void duplicateLayer() {
         // Реализовать дублирование слоя
     }
+
+    public void makeMask() {
+        // Реализовать создание обтравочной маски
+    }
+
+    public void mergeLayer() {
+        // Реализовать слияние слоев
+    }
     
     public void deleteLayer() {
         // Реализовать удаление слоя

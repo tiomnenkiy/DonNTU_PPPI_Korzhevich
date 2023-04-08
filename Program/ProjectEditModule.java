@@ -3,24 +3,24 @@
  * @author Vladimir
  * @version 1.0.1
  */
-public class ProjectEditModule {
+public class ProjectEditModule { //TODO Реализовать вырезание
     public void cut() {
-        // Реализовать вырезание
+
     }
     
-    public void copy() {
-        // Реализовать копирование
+    public void copy() { //TODO Реализовать копирование
+
     }
     
-    public void paste() {
-        // Реализовать вставку
+    public void paste() { //TODO Реализовать вставку
+
     }
     
-    public void undo() {
-        // Реализовать отмену последнего действия
+    public void undo() { //TODO Реализовать отмену последнего действия 
+
     }
     
-    public void redo() {
-        // Реализовать повтор последнего действия
+    public void redo() { //TODO Реализовать повтор последнего действия
+
     }
 }

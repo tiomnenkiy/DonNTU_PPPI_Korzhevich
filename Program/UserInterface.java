@@ -5,10 +5,6 @@ import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.GridLayout;
-import java.awt.Image;
-import java.awt.Point;
-import java.awt.RenderingHints;
-import java.awt.Shape;
 import java.awt.geom.Path2D;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
@@ -27,22 +23,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JColorChooser;
 import javax.swing.JFileChooser;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JToggleButton;
 import javax.swing.border.Border;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
-/**
- * Модуль редактирования проекта
- * @author KattrinSue
- * @version 1.0.2
- */
 public class UserInterface {
 
   private JFrame mainFrame;
@@ -59,9 +42,6 @@ public class UserInterface {
     mainFrame = new JFrame("Photoshop Clone");
     mainGraphicsModule = new MainGraphicsModule();
     documentModule = new DocumentModule(mainFrame);
-    projectEditModule = new ProjectEditModule();
-    layersModule = new LayersModule();
-    textModule = new TextModule();
     imageEditModule = new ImageEditModule();
     JFileChooser fileChooser = new JFileChooser();
     FileNameExtensionFilter filter = new FileNameExtensionFilter("Images", "bmp", "jpg", "jpeg", "gif", "png");
@@ -79,9 +59,7 @@ public class UserInterface {
     createGUI();
   }
 
-  /**
-   * Создает главное окно приложения
-   */
+
   private void createGUI() {
     mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     mainFrame.setLayout(new BorderLayout());
@@ -94,8 +72,7 @@ public class UserInterface {
     contentPanel.add(toolsPanel, BorderLayout.WEST);
 
     mainGraphicsModule = new MainGraphicsModule();
-    //contentPanel.add(mainGraphicsModule, BorderLayout.CENTER);
-
+    contentPanel.add(mainGraphicsModule, BorderLayout.CENTER);
     mainFrame.add(contentPanel, BorderLayout.CENTER);
 
     mainFrame.setPreferredSize(new Dimension(1000, 700));
@@ -103,9 +80,6 @@ public class UserInterface {
     mainFrame.setVisible(true);
   }
 
-  /**
-   * Создает панель инструментов
-   */
   private JPanel createToolsPanel() {
     JPanel toolsPanel = new JPanel();
     toolsPanel.setLayout(new BoxLayout(toolsPanel, BoxLayout.Y_AXIS));
@@ -119,12 +93,12 @@ public class UserInterface {
 
     JButton saveButton = new JButton("Save");
     saveButton.addActionListener(e -> documentModule.saveDocument(selectedFile.getAbsolutePath()));
+    
+    JToggleButton drawButton = new JToggleButton(new ImageIcon(getClass().getResource("pencil.png")));
+    drawButton.addActionListener(e -> mainGraphicsModule.drawStroke());
 
     JToggleButton selectButton = new JToggleButton(new ImageIcon(getClass().getResource("select.png")));
     selectButton.addActionListener(e -> mainGraphicsModule.selectObjects());
-
-    JToggleButton drawButton = new JToggleButton(new ImageIcon(getClass().getResource("pencil.png")));
-    drawButton.addActionListener(e -> mainGraphicsModule.drawStroke());
 
     JToggleButton eraseButton = new JToggleButton(new ImageIcon(getClass().getResource("eraser.png")));
     eraseButton.addActionListener(e -> mainGraphicsModule.erase());
@@ -138,8 +112,6 @@ public class UserInterface {
       int value = JOptionPane.showOptionDialog(mainFrame, "Select Shape to Draw", "Shape Selection", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, options, options[0]);
       if (value == 0) {
         mainGraphicsModule.setShapeDrawing(MainGraphicsModule.ShapeType.RECTANGLE);
-      } else if (value == 1) {
-        mainGraphicsModule.setShapeDrawing(MainGraphicsModule.ShapeType.ELLIPSE);
       } else if (value == 2) {
         mainGraphicsModule.setShapeDrawing(MainGraphicsModule.ShapeType.TRIANGLE);
       }
@@ -156,7 +128,7 @@ public class UserInterface {
     JToggleButton selectColorButton = new JToggleButton(new ImageIcon(getClass().getResource("color-picker.png")));
     selectColorButton.addActionListener(e -> {
       Color color = JColorChooser.showDialog(null, "Choose Color", Color.BLACK);
-      //mainGraphicsModule.setDrawingColor(color);
+      mainGraphicsModule.setDrawingColor(color);
     });
 
     toolsPanel.add(newButton);
@@ -165,9 +137,6 @@ public class UserInterface {
     toolsPanel.add(Box.createVerticalStrut(10));
     toolsPanel.add(selectButton);
     toolsPanel.add(drawButton);
-    toolsPanel.add(eraseButton);
-    toolsPanel.add(fillButton);
-    toolsPanel.add(shapeButton);
     toolsPanel.add(textButton);
     toolsPanel.add(Box.createVerticalStrut(10));
     toolsPanel.add(selectColorButton);
@@ -175,9 +144,6 @@ public class UserInterface {
     return toolsPanel;
   }
 
-  /**
-   * Создает панель меню
-   */
   private void createMenuBar() {
     JMenuBar menuBar = new JMenuBar();
 
@@ -188,6 +154,9 @@ public class UserInterface {
 
     JMenuItem openMenuItem = new JMenuItem("Open");
     openMenuItem.addActionListener(e -> documentModule.openDocument(selectedFile.getAbsolutePath()));
+
+    JMenuItem duplicateLayerMenuItem = new JMenuItem("Duplicate Layer");
+    duplicateLayerMenuItem.addActionListener(e -> layersModule.duplicateLayer());
 
     JMenuItem saveMenuItem = new JMenuItem("Save");
     saveMenuItem.addActionListener(e -> documentModule.saveDocument(selectedFile.getAbsolutePath()));
@@ -212,15 +181,8 @@ public class UserInterface {
     JMenuItem newLayerMenuItem = new JMenuItem("New Layer");
     newLayerMenuItem.addActionListener(e -> layersModule.createLayer());
 
-    JMenuItem duplicateLayerMenuItem = new JMenuItem("Duplicate Layer");
-    duplicateLayerMenuItem.addActionListener(e -> layersModule.duplicateLayer());
-
     JMenuItem deleteLayerMenuItem = new JMenuItem("Delete Layer");
     deleteLayerMenuItem.addActionListener(e -> layersModule.deleteLayer());
-
-    layerMenu.add(newLayerMenuItem);
-    layerMenu.add(duplicateLayerMenuItem);
-    layerMenu.add(deleteLayerMenuItem);
 
     JMenu textMenu = new JMenu("Text");
 

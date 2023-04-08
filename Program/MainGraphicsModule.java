@@ -15,16 +15,6 @@ public class MainGraphicsModule {
         ELLIPSE,
         TRIANGLE
     }
-    public class Point2D {
-    }
-    public class Point {
-    }
-    public class Rectangle {
-    }
-    public class Path2D {
-    }
-    public class Shape {
-    }
 
     public void moveObjects(List<Shape> shapes, Point2D startPoint, Point2D endPoint) {
         // Реализовать инструмент перемещения
@@ -49,8 +39,9 @@ public class MainGraphicsModule {
     public void createFrame(Rectangle frameRect) {
         // Реализовать инструмент создания кадров-местозаполнителей
     }
-  
-    public void pickColor(Point pickedPoint) {
+
+
+    public void dropper(Point pickedPoint) {
         // Реализовать инструмент пипетки для взятия образца цвета
     }
 
@@ -71,6 +62,10 @@ public class MainGraphicsModule {
         // Реализовать инструмент ластика для изменения цвета пикселей на фоновый или прозрачный
         List<Point> points;
     }
+    public void backgroudEraser(Rectangle frameRect) {
+        // Реализовать инструмент фоновый ластик
+    }
+  
 
     public void createGradient(Rectangle gradientRect) {
         // Реализовать инструмент градиента для создания постепенного перехода между цветами
@@ -84,27 +79,17 @@ public class MainGraphicsModule {
         // Реализовать инструмент горизонтального текста
     }
 
-    public void blur(Rectangle rect) {
-        // Реализовать инструмент "Размытие" для размытия области изображения
-    }
-
     public void brighten(Rectangle rect) {
         // Реализовать инструмент "Осветлитель" для осветления области изображения
     }
     
-    public void extractContour(Rectangle rect) {
-        // Реализовать инструмент "Выделение контура"
+    public void blur(Rectangle rect) {
+        // Реализовать инструмент "Размытие" для размытия области изображения
     }
 
-    /**
-     * Инструмент "Фигура" рисует одной из трех видов фигур:
-     *  - прямоугольник
-     *  - эллипс
-     *  - треугольник
-     * @param shape принимает одно из трех состояний ShapeType: RECTANGLE, ELLIPSE, TRIANGLE
-     */
-    public void drawShape(Shape shape) {
-        // Реализовать инструмент "Фигура" для рисования заданной фигуры
+    
+    public void extractContour(Rectangle rect) {
+        // Реализовать инструмент "Выделение контура"
     }
     
     public void pan(Point2D startPoint, Point2D endPoint) {
