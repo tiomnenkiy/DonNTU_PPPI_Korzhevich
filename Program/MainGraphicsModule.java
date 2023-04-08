@@ -49,6 +49,10 @@ public class MainGraphicsModule {
     public void createFrame(Rectangle frameRect) {
         // Реализовать инструмент создания кадров-местозаполнителей
     }
+
+    public void backgroudEraser(Rectangle frameRect) {
+        // Реализовать инструмент фоновый ластик
+    }
   
     public void pickColor(Point pickedPoint) {
         // Реализовать инструмент пипетки для взятия образца цвета
