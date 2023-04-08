@@ -18,6 +18,7 @@ public class ImageEditModule {
     public void setImageSize(int width, int height) {
         // Реализовать установку размера изображения
     }
+    
     public void hueSaturation(String mode) {
         // Изменить цвет/насыщенность
     }
