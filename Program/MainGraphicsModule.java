@@ -54,7 +54,7 @@ public class MainGraphicsModule {
         // Реализовать инструмент фоновый ластик
     }
   
-    public void pickColor(Point pickedPoint) {
+    public void dropper(Point pickedPoint) {
         // Реализовать инструмент пипетки для взятия образца цвета
     }
 
@@ -98,17 +98,6 @@ public class MainGraphicsModule {
     
     public void extractContour(Rectangle rect) {
         // Реализовать инструмент "Выделение контура"
-    }
-
-    /**
-     * Инструмент "Фигура" рисует одной из трех видов фигур:
-     *  - прямоугольник
-     *  - эллипс
-     *  - треугольник
-     * @param shape принимает одно из трех состояний ShapeType: RECTANGLE, ELLIPSE, TRIANGLE
-     */
-    public void drawShape(Shape shape) {
-        // Реализовать инструмент "Фигура" для рисования заданной фигуры
     }
     
     public void pan(Point2D startPoint, Point2D endPoint) {
